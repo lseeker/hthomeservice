@@ -1,0 +1,55 @@
+{
+  "name": "@yylee/hthomeservice",
+  "version": "0.1.0",
+  "description": "Hyundai HT HomeService API client and device state management",
+  "homepage": "https://github.com/lseeker/hthomeservice#readme",
+  "bugs": {
+    "url": "https://github.com/lseeker/hthomeservice/issues"
+  },
+  "license": "Apache-2.0",
+  "author": "Yunyoung LEE <progcom@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lseeker/hthomeservice.git"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "clean": "node -e \"require('node:fs').rmSync('./dist', { recursive: true, force: true, maxRetries: 3 })\"",
+    "build": "npm run clean && tsc",
+    "lint": "oxlint . --deny-warnings && npm run format:check",
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check .",
+    "test": "npm run build && node --test test/*.test.mjs",
+    "prepack": "npm run lint && npm test"
+  },
+  "dependencies": {
+    "got": "^16.2.0",
+    "tough-cookie": "^6.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "oxfmt": "0.75.0",
+    "oxlint": "^1.90.0",
+    "typescript": "^7.0.2"
+  },
+  "engines": {
+    "node": "^22.13.0 || ^24.0.0 || ^26.0.0"
+  }
+}
